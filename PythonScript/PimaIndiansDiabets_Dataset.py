@@ -18,10 +18,10 @@ col_names = ['pregnant', 'glucose', 'bp', 'skin', 'insulin', 'bmi', 'pedigree', 
 pima = pd.read_csv(url, header=None, names=col_names)
 
 # View first 5 rows
-print(data.head(5))
+print(pima.head(5))
 
 #Dimensions of Your Data
-print(data.shape)
+print(pima.shape)
 
 #Question: Can we predict the diabetes status of a patient given their health measurements?
 
