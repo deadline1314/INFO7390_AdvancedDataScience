@@ -5,7 +5,6 @@ Pima Indians Diabetes Data Set
 
 
 import pandas
-import numpy
 
 pandas.set_option('display.width', 100)  # change the preferred width of the output
 pandas.set_option('precision', 3)  #change the precision of the numbers
@@ -31,7 +30,7 @@ X = pima[feature_cols]
 y = pima.label
 
 # split X and y into training and testing sets
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
 
 # train a logistic regression model on the training set

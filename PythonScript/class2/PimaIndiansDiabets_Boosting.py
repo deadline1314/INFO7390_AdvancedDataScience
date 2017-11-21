@@ -3,8 +3,6 @@
 Pima Indians Diabets Data Set 
 """
 
-
-import pandas
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -24,7 +22,7 @@ X = pima[feature_cols]
 y = pima.label
 
 # split X and y into training and testing sets
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y)#, random_state=0)
 
 # train a logistic regression model on the training set
@@ -137,6 +135,7 @@ plt.title('Boosting')
 plt.xlabel('B')
 plt.ylabel('AUC')
 plt.grid(True)
+plt.show()
 
 
 from sklearn.ensemble import RandomForestClassifier
@@ -159,6 +158,7 @@ plt.title('Ranfom Forest')
 plt.xlabel('max_features')
 plt.ylabel('AUC')
 plt.grid(True)
+plt.show()
     
 # Tuning Parameters for Random Forest
 # try B=1 through B=100 and record testing accuracy
@@ -176,6 +176,7 @@ plt.title('Boosting')
 plt.xlabel('B')
 plt.ylabel('AUC')
 plt.grid(True)
+plt.show()
 
 
 ''' feature_importances_ : array of shape = [n_features]
@@ -212,17 +213,15 @@ print((pima[['glucose','bp','skin','insulin','bmi']] == 0).sum())
 
 
 # mark zero values as missing or NaN
-pima[['glucose','bp','skin','insulin','bmi']] = pima[['glucose','bp','skin','insulin','bmi']].replace(0, numpy.NaN)
+pima[['glucose','bp','skin','insulin','bmi']] = pima[['glucose','bp','skin','insulin','bmi']].replace(0, np.NaN)
 # count the number of NaN values in each column
 print(pima.isnull().sum())
+
 # drop rows with missing values
 pima.dropna(inplace=True)
 
-
 # fill missing values with mean column values
 pima.fillna(pima.mean(), inplace=True)
-
-
 
 
 X = pima[feature_cols]

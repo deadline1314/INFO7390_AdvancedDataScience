@@ -78,7 +78,7 @@ print(type(y))
 print(y.shape)
 
 #Splitting X and y into training and testing sets
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,random_state=1)
 
 
@@ -112,10 +112,10 @@ y_pred = linreg.predict(X_test)
 
 # calculate MAE using scikit-learn
 from sklearn import metrics
-print(metrics.mean_absolute_error(true, pred))
+print(metrics.mean_absolute_error(y_test, y_pred))
 
 # calculate MSE using scikit-learn
-print(metrics.mean_squared_error(true, pred))
+print(metrics.mean_squared_error(y_test, y_pred))
 
 #Mean Squared Error (MSE) is the mean of the squared errors:
     

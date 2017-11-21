@@ -5,7 +5,6 @@ Pima Indians Diabets Data Set
 
 
 import pandas
-import numpy
 
 pandas.set_option('display.width', 100)  # change the preferred width of the output
 pandas.set_option('precision', 3)  #change the precision of the numbers
@@ -104,6 +103,7 @@ plt.title('ROC curve for diabetes classifier\n AUC={auc}'.format(auc=metrics.roc
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
 plt.grid(True)
+plt.show()
 
 # define a function that accepts a threshold and prints sensitivity and specificity
 def evaluate_threshold(threshold):
@@ -141,7 +141,7 @@ import numpy as np
 lambda_range = np.arange(0.0001, 10, 0.1)
 scores = []
 for lam in lambda_range:
-    lm_ridge = RidgeClassifier(C=1/lam, penalty='l2')
+    lm_ridge = RidgeClassifier(alpha=1/lam)
     scores.append(cross_val_score(lm_ridge, X, y, cv=5, scoring='roc_auc').mean())
 
 import matplotlib.pyplot as plt
@@ -153,6 +153,7 @@ plt.title('L2 Regularization')
 plt.xlabel('Lambda')
 plt.ylabel('AUC')
 plt.grid(True)
+plt.show()
     
 
 # Step 1: Select the first variable

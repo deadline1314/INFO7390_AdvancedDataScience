@@ -13,10 +13,11 @@ y = iris.target
 # import the class
 
 from sklearn.tree import DecisionTreeClassifier
-tree = DecisionTreeClassifier()
-clf = tree.fit(X, y)
+decisionTree = DecisionTreeClassifier()
+clf = decisionTree.fit(X, y)
 
-import graphviz 
+import graphviz
+from sklearn import tree
 dot_data = tree.export_graphviz(clf, out_file=None) 
 graph = graphviz.Source(dot_data) 
 graph.render("iris") 
@@ -28,20 +29,20 @@ dot_data = tree.export_graphviz(clf, out_file=None,
                          filled=True, rounded=True,  
                          special_characters=True)  
 graph = graphviz.Source(dot_data)  
-graph 
+graph
 
 
 # STEP 1: split X and y into training and testing sets
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=4)
 
-
-tree = DecisionTreeClassifier()
-tree.fit(X_train, y_train)
+# STEP 2: fit into decision tree model
+decisionTree = DecisionTreeClassifier()
+decisionTree.fit(X_train, y_train)
 
 # STEP 3: make predictions on the testing set
-y_pred_class = tree.predict(X_test)
-y_pred_prob = tree.predict_proba(X_test)
+y_pred_class = decisionTree.predict(X_test)
+y_pred_prob = decisionTree.predict_proba(X_test)
 
 
 
@@ -60,4 +61,4 @@ print(metrics.confusion_matrix(y_test, y_pred_class))
 
 # calculate cross-validated AUC
 from sklearn.cross_validation import cross_val_score
-cross_val_score(tree, X, y, cv=10, scoring='accuracy').mean()
+cross_val_score(decisionTree, X, y, cv=10, scoring='accuracy').mean()

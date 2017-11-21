@@ -69,7 +69,7 @@ Step 3: Test the model on the testing set, and evaluate how well we did.
 '''
 
 # STEP 1: split X and y into training and testing sets
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=4)
 
 # print the shapes of the new X objects
@@ -88,20 +88,20 @@ logreg.fit(X_train, y_train)
 # STEP 3: make predictions on the testing set
 y_pred = logreg.predict(X_test)
 
+from sklearn import metrics
 # compare actual response values (y_test) with predicted response values (y_pred)
 print(metrics.accuracy_score(y_test, y_pred))
 
 
-
 # calculate accuracy
-from sklearn import metrics
-
 print(metrics.confusion_matrix(y_test, y_pred))
 
 y_pred_prob = logreg.predict(X_test)
 
-fpr, tpr, thresholds = metrics.roc_curve(y_test, y_pred_prob)
-
+fpr, tpr, thresholds = metrics.roc_curve(y_test, y_pred_prob, pos_label=2)
+fpr
+tpr
+thresholds
 
 '''
 K Nearest Neighbor (KNN)
